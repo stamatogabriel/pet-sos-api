@@ -24,11 +24,25 @@ export class PetsService {
   }
 
   async update(id: string, pet: Partial<IPets>): Promise<PetsDocument> {
-    return await this.petsModel.findByIdAndUpdate(id, pet, {new: true}).exec();
+    return await this.petsModel
+      .findByIdAndUpdate(id, pet, { new: true })
+      .exec();
+  }
+
+  async images(id: string, file) {
+    return await this.petsModel
+      .findByIdAndUpdate(
+        id,
+        {
+          image: file[0].location,
+        },
+        { new: true },
+      )
+      .exec();
   }
 
   async delete(id: string): Promise<any> {
-    await this.petsModel.findByIdAndDelete(id).exec()
-    return { message: 'Pet deletado com sucesso' }
+    await this.petsModel.findByIdAndDelete(id).exec();
+    return { message: 'Pet deletado com sucesso' };
   }
 }

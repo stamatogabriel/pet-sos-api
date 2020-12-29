@@ -13,6 +13,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FilesInterceptor, MulterModule } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger';
 
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -22,6 +23,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 import { StorageTypes, FileFilter } from '../configs';
 
+@ApiTags('Users')
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {
@@ -38,6 +40,7 @@ export class UserController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   index() {
     return this.userService.index();
   }
@@ -48,11 +51,13 @@ export class UserController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   findById(@Param('id') params: string) {
     return this.userService.findById(params);
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   update(@Param('id') params: string, @Body() user: UpdateUserDto) {
     return this.userService.update(params, user);
   }
@@ -73,6 +78,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   delete(@Param('id') params: string) {
     return this.userService.delete(params);
   }
