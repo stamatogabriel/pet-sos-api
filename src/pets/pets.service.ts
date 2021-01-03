@@ -15,8 +15,26 @@ export class PetsService {
     return createPet.save();
   }
 
-  async index(): Promise<PetsDocument[]> {
-    return await this.petsModel.find().populate('adoptedBy');
+  async index(query): Promise<PetsDocument[]> {
+    const page = Number(query.page) || 1;
+
+    const limit = Number(query.limit) || 10;
+
+    const skip = (page - 1) * limit;
+
+    if (query.adopted) {
+      return await this.petsModel
+        .find({ adopted: query.adopted })
+        .skip(skip)
+        .limit(limit)
+        .populate('adoptedBy');
+    }
+
+    return await this.petsModel
+      .find()
+      .skip(skip)
+      .limit(limit)
+      .populate('adoptedBy');
   }
 
   async findById(id: string): Promise<PetsDocument> {

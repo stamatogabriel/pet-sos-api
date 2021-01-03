@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Req,
   UploadedFiles,
   UseGuards,
   UseInterceptors,
@@ -39,8 +40,8 @@ export class PetsController {
   }
 
   @Get()
-  async index() {
-    return this.petService.index();
+  async index(@Req() req) {
+    return this.petService.index(req.query);
   }
 
   @Get(':id')

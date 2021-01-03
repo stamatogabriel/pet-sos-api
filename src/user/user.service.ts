@@ -32,7 +32,6 @@ export class UserService {
         },
         { new: true },
       )
-      .exec();
   }
 
   async index(): Promise<User[]> {
