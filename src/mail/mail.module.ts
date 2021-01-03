@@ -12,11 +12,11 @@ import { MailController } from './mail.controller';
       useFactory: () => ({
         //Mailtrap's user and password
         transport: {
-          host: 'smtp.mailtrap.io',
-          port: 2525,
+          host: 'smtp.umbler.com',
+          port: 587,
           auth: {
-            user: 'eca53d965bb31b',
-            pass: '5bf7e1a96d6bf3',
+            user: 'admin@apva-paulinia.org',
+            pass: 'Apva@2021',
           },
         },
         template: {

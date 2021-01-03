@@ -12,7 +12,7 @@ export class MailService {
     try {
       const response = await this.mailerService.sendMail({
         to: 'stamato7@gmail.com',
-        from: mail.email,
+        from: 'admin@apva-paulinia.org',
         subject: mail.title,
         template: 'mail',
         attachments: mail.attachments,
@@ -26,6 +26,7 @@ export class MailService {
 
       return response;
     } catch (error) {
+      console.log(error)
       throw new HttpException(
         {
           message: 'Email not send',
