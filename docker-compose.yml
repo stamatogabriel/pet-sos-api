@@ -1,33 +1,24 @@
-version: '3'
-
-services: 
-  mongo-express:
-    image: mongo-express
-    ports: 
-      - 8081:8081
-    environment: 
-      ME_CONFIG_BASICAUTH_USERNAME: stamatogabriel
-      ME_CONFIG_BASICAUTH_PASSWORD: MongoExpress2019!
-      ME_CONFIG_MONGODB_PORT: 27017
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: MongoDB2019!
-    links: 
-      - mongo
-    networks: 
-      - mongo-compose-network
-
-  mongo:
+version: "3"
+services:
+  back_app:
+    depends_on:
+      - db
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URL=mongodb://db_mongo
+    volumes:
+      - .:/usr/app
+      
+  db:
     image: mongo
-    environment: 
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: MongoDB2019!
+    container_name: db_mongo
+    volumes:
+      - mongodata:/data/db
     ports:
       - "27017:27017"
-    volumes: 
-      - . /data/db
-    networks: 
-      - mongo-compose-network
 
-networks: 
-  mongo-compose-network:
-    driver: bridge
+volumes:
+  mongodata: 
