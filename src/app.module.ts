@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { PetsModule } from './pets/pets.module';
 import { AuthModule } from './auth/auth.module';
 import { MailModule } from './mail/mail.module';
+import { ThrifStoreModule } from './thrif-store/thrif-store.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { MailModule } from './mail/mail.module';
     PetsModule,
     AuthModule,
     MailModule,
+    ThrifStoreModule,
   ],
   controllers: [AppController],
   providers: [AppService],
