@@ -1,6 +1,27 @@
 {
   "version": 2,
-  "name": "pet-sos-api",
-  "builds": [{ "src": "dist/main.js", "use": "@now/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "dist/main.js" }]
+  "builds": [
+    {
+      "src": "dist/main.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/main.js"
+    }
+  ],
+  "env": {
+    "MONGO_URL": "mongodb+srv://gabriel:881221@cluster0.1fl2x.mongodb.net/pet-sos?retryWrites=true&w=majority",
+    "PASSWORD_SALT": "d^&rf#erL7fLr$%8GEG7Aj*E^d9t1VwR2M3Ib$RL766Or2mCKG",
+
+    "SOS_SECRET": "d9fd860df44a3d44bfb8030912633188",
+
+    "PORT": "3000",
+
+    "ACCESS_KEY_ID": "AKIAZAEVG6QKE4SW7D62",
+    "SECRET_ACCESS_KEY": "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",
+    "DEFAULT_REGION": "us-east-1"
+  }
 }

@@ -15,6 +15,7 @@ async function bootstrap() {
     .addTag('sos-pets')
     .build();
   const document = SwaggerModule.createDocument(app, options);
+  
   SwaggerModule.setup('swagger', app, document);
 
   app.use(helmet());
