@@ -1,7 +1,6 @@
 # compiled output
 /dist
 /node_modules
-now.json
 .env
 /.serverless
 # Logs
@@ -12,6 +11,7 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+now.json
 # OS
 .DS_Store
 
